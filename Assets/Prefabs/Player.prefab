@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 4726853014139724}
   - component: {fileID: 20816623067726102}
   - component: {fileID: 124074464725247170}
-  - component: {fileID: 81291218526383348}
   - component: {fileID: 114926906995224714}
   m_Layer: 0
   m_Name: Main Camera
@@ -104,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744370627497576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -56.3}
+  m_LocalPosition: {x: 0, y: 0, z: -75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4821637680743312}
@@ -299,13 +298,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81291218526383348
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1744370627497576}
-  m_Enabled: 1
 --- !u!96 &96716587919323990
 TrailRenderer:
   serializedVersion: 2

@@ -50,7 +50,7 @@ public class Frigate : Unit
         }
 	    if (Vector3.Distance(transform.position, _target) > 0.2f)
 	    {
-	        transform.position = Vector3.MoveTowards(transform.position, _target, Time.deltaTime);
+	        transform.position = Vector3.MoveTowards(transform.position, _target, 2*Time.deltaTime);
             MovementLine.SetPosition(0,transform.position);
 	        MovementLine.SetPosition(1, _target);
 

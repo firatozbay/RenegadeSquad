@@ -11,7 +11,7 @@ public class Missile : MonoBehaviour
 
     void Start()
     {
-        _speed = 3;
+        _speed = 20;
     }
 
     void Update()
@@ -24,7 +24,7 @@ public class Missile : MonoBehaviour
         }
         else
         {
-            Explode(null);
+            Destroy(gameObject);
         }
     }
 

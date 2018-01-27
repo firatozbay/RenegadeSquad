@@ -52,6 +52,11 @@ public class ControllerManager
                         fighter.UseCommand(Command.Pause);
                         _escapePressed = true;
                     }
+                    /*
+                    if (_states[i].ThumbSticks.Left.Y > 0.1f || _states[i].ThumbSticks.Left.X > 0.1f || _states[i].ThumbSticks.Left.X < -0.1 || _states[i].ThumbSticks.Left.Y < -0.1)
+                    {
+                        fighter.Move(_states[i].ThumbSticks.Left.X, _states[i].ThumbSticks.Left.Y);
+                    }*/
                     if (_states[i].ThumbSticks.Left.Y > 0.1f)
                     {
                         if (_states[i].ThumbSticks.Left.X < -0.1f)

@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        _timer = 1;
+        _timer = 2;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.AddForce(transform.forward * 75,ForceMode.Impulse);
 	}
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         _timer -= Time.deltaTime;
         if(_timer < 0)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 	}
 
@@ -36,6 +36,7 @@ public class Bullet : MonoBehaviour
 
     void Damage(Unit unit)
     {
-        unit.Health -= 15;
+        unit.Health -= 20;
+        Destroy(gameObject);
     }
 }

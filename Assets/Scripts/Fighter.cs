@@ -15,6 +15,7 @@ public class Fighter : Unit {
 
     // Use this for initialization
     void Start () {
+        Health = 100;
         _rigidbody = GetComponent<Rigidbody>();
         _contFireTimer = 0;
 	}
@@ -22,10 +23,16 @@ public class Fighter : Unit {
 	// Update is called once per frame
 	void Update ()
 	{
-	    Health = 100;
         ControllerManager.Instance.GetCommand(this);
 	}
-    
+    /*
+    public void Move(float x, float y)
+    {
+        //transform.eulerAngles = Vector3.MoveTowards(transform.eulerAngles, new Vector3(transform.eulerAngles.x, Mathf.Tan(y/x)* Mathf.Rad2Deg, transform.eulerAngles.z), 150 * Time.deltaTime);
+         transform.rotation =   Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(transform.eulerAngles.x, Mathf.Tan(y / x) * Mathf.Rad2Deg, transform.eulerAngles.z)), 150 * Time.deltaTime);
+        _rigidbody.AddForce(transform.forward * 5);
+    }*/
+
     public void UseCommand(ControllerManager.Command command)
     {
         int n = 150;
@@ -120,6 +127,7 @@ public class Fighter : Unit {
     void Fire()
     {
         var go = Instantiate(Bullet, transform.position, transform.rotation);
+        go.GetComponent<Bullet>().Fighter = this;
         _rigidbody.AddForce(transform.forward*-1*0.1f,ForceMode.Impulse);
     }
 }
