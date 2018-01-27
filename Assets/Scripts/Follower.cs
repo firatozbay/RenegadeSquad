@@ -17,6 +17,15 @@ public class Follower : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = Target.position + _initialDistance;
+        if (Target != null)
+            transform.position = Target.position + _initialDistance;
+        else
+        {
+            var cam = GetComponent<Camera>();
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = Color.black;
+            cam.cullingMask = 0;
+
+        }
     }
 }

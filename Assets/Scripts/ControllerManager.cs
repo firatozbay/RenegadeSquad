@@ -8,7 +8,7 @@ public class ControllerManager
     public static ControllerManager Instance;
 
     public enum ControllerIndex { XInput0 = 0, XInput1 = 1, XInput2 = 2, XInput3 = 3 }
-    public enum Command { Up = 0, Down = 1, Left = 2, Right = 3, Use = 4, UpLeft = 5, UpRight = 6, DownLeft = 7, DownRight = 8, Pause = 9, Fire = 10, ContFire = 11, Thrust=12 }
+    public enum Command { Up = 0, Down = 1, Left = 2, Right = 3, Use = 4, UpLeft = 5, UpRight = 6, DownLeft = 7, DownRight = 8, Pause = 9, Fire = 10, ContFire = 11, Thrust=12, Break=13 }
 
     //XInput
     GamePadState[] _states;
@@ -81,6 +81,10 @@ public class ControllerManager
                     if (_prevStates[i].Buttons.A == ButtonState.Pressed && _states[i].Buttons.A == ButtonState.Pressed)
                     {
                         fighter.UseCommand(Command.Thrust);
+                    }
+                    if (_prevStates[i].Buttons.B == ButtonState.Pressed && _states[i].Buttons.B == ButtonState.Pressed)
+                    {
+                        fighter.UseCommand(Command.Break);
                     }
                     if (_states[i].Triggers.Right > 0.9f && _prevStates[i].Triggers.Right <  0.89f)
                     {

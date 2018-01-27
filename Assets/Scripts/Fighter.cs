@@ -3,29 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Fighter : MonoBehaviour {
+public class Fighter : Unit {
 
     public ControllerManager.ControllerIndex ControllerIndex;
 
     public GameObject Bullet;
 
     private Rigidbody _rigidbody;
-
     
-    private int _health;
     private float _contFireTimer;
-
-    public int Health
-    {
-        get { return _health; }
-        set
-        {
-            _health = value;
-            HealthBarImage.fillAmount = _health / 100f;
-        }
-    }
-
-    public Image HealthBarImage;
 
     // Use this for initialization
     void Start () {
@@ -34,13 +20,15 @@ public class Fighter : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+	    Health = 100;
         ControllerManager.Instance.GetCommand(this);
 	}
     
     public void UseCommand(ControllerManager.Command command)
     {
-        int n = 100;
+        int n = 150;
         int m = 5;
         if (command == ControllerManager.Command.Pause)
         {
@@ -116,9 +104,16 @@ public class Fighter : MonoBehaviour {
                 Fire();
             }
         }
+
         else if (command == ControllerManager.Command.Thrust)
         {
             _rigidbody.AddForce(transform.forward * m*5);
+        }
+
+        else if (command == ControllerManager.Command.Break)
+        {
+            _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity,Vector3.zero, Time.deltaTime);
+            _rigidbody.angularVelocity = Vector3.Lerp(_rigidbody.angularVelocity, Vector3.zero, Time.deltaTime);
         }
     }
 

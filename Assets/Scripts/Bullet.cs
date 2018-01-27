@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour
+{
+    public Fighter Fighter;
 
     private float _timer;
     private Rigidbody _rigidbody;
@@ -25,6 +27,15 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        
+        var unit = other.GetComponent<Unit>();
+        if (unit != null && unit.UnitAlignment != Fighter.UnitAlignment)
+        {
+            Damage(unit);
+        }
+    }
+
+    void Damage(Unit unit)
+    {
+        unit.Health -= 15;
     }
 }
