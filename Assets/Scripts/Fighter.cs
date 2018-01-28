@@ -114,7 +114,7 @@ public class Fighter : Unit {
 
         else if (command == ControllerManager.Command.Thrust)
         {
-            _rigidbody.AddForce(transform.forward * m*5);
+            _rigidbody.AddForce(transform.forward * m*10);
         }
 
         else if (command == ControllerManager.Command.Break)
@@ -128,6 +128,6 @@ public class Fighter : Unit {
     {
         var go = Instantiate(Bullet, transform.position, transform.rotation);
         go.GetComponent<Bullet>().Fighter = this;
-        _rigidbody.AddForce(transform.forward*-1*0.1f,ForceMode.Impulse);
+        _rigidbody.AddForce(transform.forward*-1*0.2f,ForceMode.Impulse);
     }
 }
