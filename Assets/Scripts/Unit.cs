@@ -10,6 +10,9 @@ public class Unit : MonoBehaviour
     public Alignment UnitAlignment;
 
     public GameObject ExplosionPrefab;
+    public GameObject HealthBarPrefab;
+
+    public Image HealthBarImage;
 
     private int _health;
 
@@ -19,7 +22,7 @@ public class Unit : MonoBehaviour
         set
         {
             _health = value;
-            //HealthBarImage.fillAmount = _health / 100f;
+            HealthBarImage.fillAmount = _health / 100f;
             if (_health <= 0)
             {
                 Explode();
@@ -27,11 +30,18 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public Image HealthBarImage;
 
+    public void Start()
+    {
+        var go = Instantiate(HealthBarPrefab, UnitsUI.Instance.transform);
+        var health = go.GetComponent<HealthBar>();
+        health.Unit = this;
+        HealthBarImage = health.HealthFill;
+    }
     public void Explode()
     {
         Instantiate(ExplosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
+
     }
 }

@@ -15,6 +15,7 @@ public class Fighter : Unit {
 
     // Use this for initialization
     void Start () {
+        base.Start();
         Health = 100;
         _rigidbody = GetComponent<Rigidbody>();
         _contFireTimer = 0;

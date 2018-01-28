@@ -405,6 +405,8 @@ MonoBehaviour:
   UnitAlignment: 0
   ExplosionPrefab: {fileID: 1424055699594676, guid: c0ed888d0386d1a459fb6e2f8173f56f,
     type: 2}
+  HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
+    type: 2}
   HealthBarImage: {fileID: 0}
   ControllerIndex: 1
   Bullet: {fileID: 1676998913839862, guid: 2a9e67a96bff3fe42a1bf96187f1a78e, type: 2}

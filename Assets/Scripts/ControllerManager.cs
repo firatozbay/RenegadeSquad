@@ -85,6 +85,7 @@ public class ControllerManager
                     }
                     if (_prevStates[i].Buttons.A == ButtonState.Pressed && _states[i].Buttons.A == ButtonState.Pressed)
                     {
+                        Debug.Log("asdf");
                         fighter.UseCommand(Command.Thrust);
                     }
                     if (_prevStates[i].Buttons.B == ButtonState.Pressed && _states[i].Buttons.B == ButtonState.Pressed)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Frigate : Unit
 {
     public Camera TacticalCamera;
+    public static Camera TacticalCameraInstance;
     public LineRenderer MovementLine;
     public Transform Indicator;
     private Vector3 _target;
@@ -12,6 +13,8 @@ public class Frigate : Unit
 	// Use this for initialization
 	void Start ()
 	{
+        base.Start();
+        TacticalCameraInstance = TacticalCamera;
 	    Health = 1000;
 	    _target = transform.position;
 	    Indicator.position = _target;
