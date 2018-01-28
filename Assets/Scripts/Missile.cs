@@ -34,6 +34,7 @@ public class Missile : MonoBehaviour
         if (unit != null && unit.UnitAlignment != Frigate.UnitAlignment)
         {
             Damage(unit);
+            Debug.Log("damage");
         }
     }
 

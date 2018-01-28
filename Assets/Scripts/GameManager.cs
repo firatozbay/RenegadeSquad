@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,8 +11,24 @@ public class GameManager : MonoBehaviour {
 
     public Transform PlayerList;
 
-	// Use this for initialization
-	void Start () {
+    public Transform PlayerStationsParent;
+    public Transform EnemyStationsParent;
+
+    public int PlayerStationCount;
+    public int EnemyStationCount;
+
+    public Text GameWinLose;
+
+    private void Awake()
+    {
+        Instance = this;
+        var ps = PlayerStationsParent.GetComponentsInChildren<Station>();
+        var es = EnemyStationsParent.GetComponentsInChildren<Station>();
+        PlayerStationCount = ps.Length;
+        EnemyStationCount = es.Length;
+    }
+    // Use this for initialization
+    void Start () {
         ControllerManager = new ControllerManager();
         ControllerManager.Instance = ControllerManager;
 	    int size = PlayerList.transform.childCount;
@@ -29,6 +46,13 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(PlayerStationCount == 0) {
+            GameWinLose.text = "YOU LOST";
+            GameWinLose.gameObject.SetActive(true);
+        }else if(EnemyStationCount == 0)
+        {
+            GameWinLose.text = "YOU WIN";
+            GameWinLose.gameObject.SetActive(true);
+        }
 	}
 }

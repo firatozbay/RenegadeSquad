@@ -15,12 +15,13 @@ public class Frigate : Unit
 
 	// Use this for initialization
 	public override void Start ()
-	{
-        _enemyTimer = 25;
+    {
         base.Start();
+        _enemyTimer = 25;
         TacticalCameraInstance = TacticalCamera;
-	    Health = 1000;
-	    _target = transform.position;
+        FullHealth = 500;
+        Health = 500;
+        _target = transform.position;
 	    Indicator.position = _target;
     }
 
@@ -47,7 +48,16 @@ public class Frigate : Unit
             if (_enemyTimer > 25)
             {
                 _enemyTimer = 0;
-                _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+                var rand = Random.Range(0, 10);
+                if (rand > 6)
+                {
+                    _target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
+                }
+                else
+                {
+                    _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+                }
+                
             }
         }
 	    Vector3 relativePos = _target - transform.position;
@@ -69,7 +79,7 @@ public class Frigate : Unit
         }
 	    if (Vector3.Distance(transform.position, _target) > 0.2f)
 	    {
-	        transform.position = Vector3.MoveTowards(transform.position, _target, 4*Time.deltaTime);
+	        transform.position = Vector3.MoveTowards(transform.position, _target, ((UnitAlignment == Alignment.Enemy)?1.5f:1f)*4*Time.deltaTime);
             MovementLine.SetPosition(0,transform.position);
 	        MovementLine.SetPosition(1, _target);
 

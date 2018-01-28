@@ -15,14 +15,14 @@ public class Unit : MonoBehaviour
     public Image HealthBarImage;
 
     private int _health;
-
+    public int FullHealth =100;
     public int Health
     {
         get { return _health; }
         set
         {
             _health = value;
-            HealthBarImage.fillAmount = _health / 100f;
+            HealthBarImage.fillAmount = (float)_health / (float)FullHealth;
             if (_health <= 0)
             {
                 Explode();
