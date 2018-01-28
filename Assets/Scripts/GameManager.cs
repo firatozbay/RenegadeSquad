@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         Instance = this;
+        if (Display.displays.Length > 1)
+            Display.displays[1].Activate();
         var ps = PlayerStationsParent.GetComponentsInChildren<Station>();
         var es = EnemyStationsParent.GetComponentsInChildren<Station>();
         PlayerStationCount = ps.Length;
