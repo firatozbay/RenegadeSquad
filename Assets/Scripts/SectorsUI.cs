@@ -7,12 +7,7 @@ public class SectorsUI : MonoBehaviour {
     public static SectorsUI Instance;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Instance = this;	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

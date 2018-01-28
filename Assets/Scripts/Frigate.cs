@@ -11,9 +11,12 @@ public class Frigate : Unit
     private Vector3 _target;
     public LayerMask Mask;
 
+    private float _enemyTimer;
+
 	// Use this for initialization
-	void Start ()
+	public override void Start ()
 	{
+        _enemyTimer = 25;
         base.Start();
         TacticalCameraInstance = TacticalCamera;
 	    Health = 1000;
@@ -24,17 +27,29 @@ public class Frigate : Unit
     // Update is called once per frame
     void Update ()
 	{
-	    if (Input.GetMouseButtonDown(1))
-	    {
-	        RaycastHit hit;
-	        Ray ray = TacticalCamera.ScreenPointToRay(Input.mousePosition);
-	        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-            if (Physics.Raycast(ray, out hit, 2000, Mask.value))
-	        {
-	            _target = new Vector3(hit.point.x,transform.position.y,hit.point.z);
-	            Indicator.position = _target;
-	        }
-	    }
+        if (UnitAlignment == Alignment.Player)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                RaycastHit hit;
+                Ray ray = TacticalCamera.ScreenPointToRay(Input.mousePosition);
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+                if (Physics.Raycast(ray, out hit, 2000, Mask.value))
+                {
+                    _target = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                    Indicator.position = _target;
+                }
+            }
+        }
+        else
+        {
+            _enemyTimer += Time.deltaTime;
+            if (_enemyTimer > 25)
+            {
+                _enemyTimer = 0;
+                _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+            }
+        }
 	    Vector3 relativePos = _target - transform.position;
 	    Quaternion rotation = Quaternion.LookRotation(relativePos);
         if (Quaternion.Angle(transform.rotation, rotation) > 0.1f)

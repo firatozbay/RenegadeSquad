@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EmptyScene.unity
     guid: 0ad1a222918fd3d478cd7f9c49e7609a
+  - enabled: 1
+    path: Assets/Scenes/MainGame.unity
+    guid: a748ea37ada45964a89ca6d567d2df7f

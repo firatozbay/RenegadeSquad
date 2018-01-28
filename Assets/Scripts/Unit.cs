@@ -31,7 +31,7 @@ public class Unit : MonoBehaviour
     }
 
 
-    public void Start()
+    public virtual void Start()
     {
         var go = Instantiate(HealthBarPrefab, UnitsUI.Instance.transform);
         var health = go.GetComponent<HealthBar>();

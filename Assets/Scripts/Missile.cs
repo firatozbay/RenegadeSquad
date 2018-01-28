@@ -16,7 +16,7 @@ public class Missile : MonoBehaviour
 
     void Update()
     {
-        _speed += 0.5f * Time.deltaTime;
+        _speed += 3f * Time.deltaTime;
         if (Target != null)
         {
             transform.LookAt(Target);

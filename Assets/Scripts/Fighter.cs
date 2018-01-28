@@ -14,7 +14,7 @@ public class Fighter : Unit {
     private float _contFireTimer;
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
         base.Start();
         Health = 100;
         _rigidbody = GetComponent<Rigidbody>();
