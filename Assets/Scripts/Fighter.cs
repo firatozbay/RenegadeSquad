@@ -13,6 +13,10 @@ public class Fighter : Unit {
     
     private float _contFireTimer;
 
+    private float _enemyTimer;
+
+    private Vector3 _target;
+
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -20,13 +24,66 @@ public class Fighter : Unit {
         Health = 100;
         _rigidbody = GetComponent<Rigidbody>();
         _contFireTimer = 0;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+        _enemyTimer = 0;
+        var rand = Random.Range(0, 10);
+        if (rand > 6)
+        {
+            _target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
+        }
+        else
+        {
+            _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update ()
 	{
-        ControllerManager.Instance.GetCommand(this);
-	}
+        if(UnitAlignment == Alignment.Player)
+            ControllerManager.Instance.GetCommand(this);
+        else
+        {
+            _enemyTimer += Time.deltaTime;
+            if (_enemyTimer > 10)
+            {
+                _enemyTimer = 0;
+                var rand = Random.Range(0, 10);
+                if (rand > 6)
+                {
+                    _target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
+                }
+                else
+                {
+                    _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+                }
+
+            }
+            Vector3 relativePos = _target - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            if (Quaternion.Angle(transform.rotation, rotation) > 0.1f)
+            {
+                // fast rotation
+                float rotSpeed = 360f;
+
+                // distance between target and the actual rotating object
+                Vector3 D = _target - transform.position;
+
+                // calculate the Quaternion for the rotation
+                Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), rotSpeed * Time.deltaTime);
+
+                //Apply the rotation 
+                transform.rotation = rot;
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            }
+
+            if (Vector3.Distance(transform.position, _target) > 0.2f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _target, 30 * Time.deltaTime);
+            }
+        }
+    }
     /*
     public void Move(float x, float y)
     {

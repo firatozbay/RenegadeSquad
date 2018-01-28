@@ -37,6 +37,7 @@ public class Unit : MonoBehaviour
         var health = go.GetComponent<HealthBar>();
         health.Unit = this;
         HealthBarImage = health.HealthFill;
+
     }
     public void Explode()
     {
