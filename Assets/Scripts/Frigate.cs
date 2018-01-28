@@ -9,6 +9,7 @@ public class Frigate : Unit
     public LineRenderer MovementLine;
     public Transform Indicator;
     private Vector3 _target;
+    public LayerMask Mask;
 
 	// Use this for initialization
 	void Start ()
@@ -28,7 +29,7 @@ public class Frigate : Unit
 	        RaycastHit hit;
 	        Ray ray = TacticalCamera.ScreenPointToRay(Input.mousePosition);
 	        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 2000, Mask.value))
 	        {
 	            _target = new Vector3(hit.point.x,transform.position.y,hit.point.z);
 	            Indicator.position = _target;

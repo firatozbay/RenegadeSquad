@@ -33,15 +33,16 @@ public class Missile : MonoBehaviour
         var unit = col.GetComponent<Unit>();
         if (unit != null && unit.UnitAlignment != Frigate.UnitAlignment)
         {
-            Explode(unit);
+            Damage(unit);
         }
     }
 
-    void Explode(Unit unit)
+    void Damage(Unit unit)
     {
         if(unit != null)
-            Destroy(unit.gameObject);
-        Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+        {
+            unit.Health -= 150;        
+        }
         Destroy(gameObject);
     }
 }

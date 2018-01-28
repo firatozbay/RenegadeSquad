@@ -419,6 +419,9 @@ MonoBehaviour:
   TacticalCamera: {fileID: 20442251545337940}
   MovementLine: {fileID: 120558671174086598}
   Indicator: {fileID: 4592266024290422}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114576282892321632
 MonoBehaviour:
   m_ObjectHideFlags: 1
