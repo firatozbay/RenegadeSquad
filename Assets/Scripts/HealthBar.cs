@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour {
 
-    public Unit Unit;
+    private Unit _unit;
+
+    public Unit Unit { get { return _unit; }
+        set
+        {
+            _unit = value;
+            Debug.Log(_unit.UnitAlignment);
+            HealthFill.color = _unit.UnitAlignment == Unit.Alignment.Player ? PlayerColor : EnemyColor;
+        }
+    }
     public Image HealthFill;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public Color PlayerColor;
+    public Color EnemyColor;
+    
 	// Update is called once per frame
 	void Update () {
         if (Unit != null)
