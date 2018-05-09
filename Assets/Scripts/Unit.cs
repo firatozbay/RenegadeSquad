@@ -42,7 +42,10 @@ public class Unit : MonoBehaviour
     public void Explode()
     {
         Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+        Destroy();
+    }
+    public virtual void Destroy()
+    {
         Destroy(gameObject);
-
     }
 }

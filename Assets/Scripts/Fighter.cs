@@ -17,11 +17,18 @@ public class Fighter : Unit {
 
     public Vector3 Target { get; set; }
 
-    public Text NameText; // UI Text or player
+    public Text NameText; // UI Text for player
+    public Text DeathTimerText; //UI Text for player
+
+    public float DeathTimer { get; set; }
+
+    private Vector3 _initialPosition;
 
     // Use this for initialization
     public override void Start () {
         base.Start();
+        _initialPosition = transform.position;
+        DeathTimer = -1;
         FullHealth = 100;
         Health = 100;
         _rigidbody = GetComponent<Rigidbody>();
@@ -43,8 +50,24 @@ public class Fighter : Unit {
     // Update is called once per frame
     void Update ()
 	{
-        if(UnitAlignment == Alignment.Player)
-            ControllerManager.Instance.GetCommand(this);
+        if (UnitAlignment == Alignment.Player)
+        {
+            if(DeathTimer > 0)
+            {
+                DeathTimer -= Time.deltaTime;
+                DeathTimerText.text = "Respawn in\n00:0" + DeathTimer.ToString("0");
+                if (DeathTimer < 0)
+                {
+                    Respawn();
+                    DeathTimerText.text = "";
+                }
+            }
+            else
+            {
+                ControllerManager.Instance.GetCommand(this);
+            }
+
+        }
         else //Enemy
         {
             _enemyTimer += Time.deltaTime;
@@ -190,5 +213,36 @@ public class Fighter : Unit {
         var go = Instantiate(Bullet, transform.position, transform.rotation);
         go.GetComponent<Bullet>().Fighter = this;
         _rigidbody.AddForce(transform.forward*-1*0.2f,ForceMode.Impulse);
+    }
+    public override void Destroy()
+    {
+        if (UnitAlignment == Unit.Alignment.Player)
+        {
+            ToggleActivation(false);
+            DeathTimer = 5;
+        }
+        else
+        {
+            base.Destroy();
+        }
+    }
+
+    void ToggleActivation(bool enable)
+    {
+        var meshrenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var meshrenderer in meshrenderers)
+            meshrenderer.enabled = enable;
+
+        GetComponent<Collider>().enabled = enable;
+        GetComponentInChildren<TrailRenderer>().enabled = enable;
+
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.isKinematic = !enable;
+    }
+    void Respawn()
+    {
+        transform.position = _initialPosition;
+        ToggleActivation(true);
     }
 }
