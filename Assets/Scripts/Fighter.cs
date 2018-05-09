@@ -15,7 +15,7 @@ public class Fighter : Unit {
 
     private float _enemyTimer;
 
-    private Vector3 _target;
+    public Vector3 Target { get; set; }
 
     // Use this for initialization
     public override void Start () {
@@ -23,17 +23,17 @@ public class Fighter : Unit {
         FullHealth = 100;
         Health = 100;
         _rigidbody = GetComponent<Rigidbody>();
-        _contFireTimer = 0;
+        _contFireTimer = 0;     //time to fire for continous pressing
 
         _enemyTimer = 0;
         var rand = Random.Range(0, 10);
         if (rand > 6)
         {
-            _target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
+            Target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
         }
         else
         {
-            _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+            Target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
         }
 
     }
@@ -43,7 +43,7 @@ public class Fighter : Unit {
 	{
         if(UnitAlignment == Alignment.Player)
             ControllerManager.Instance.GetCommand(this);
-        else
+        else //Enemy
         {
             _enemyTimer += Time.deltaTime;
             if (_enemyTimer > 10)
@@ -52,15 +52,15 @@ public class Fighter : Unit {
                 var rand = Random.Range(0, 10);
                 if (rand > 6)
                 {
-                    _target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
+                    Target = new Vector3(Random.Range(-1000, 0), transform.position.y, Random.Range(-300, 300));
                 }
                 else
                 {
-                    _target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
+                    Target = new Vector3(Random.Range(0, 1000), transform.position.y, Random.Range(-300, 300));
                 }
 
             }
-            Vector3 relativePos = _target - transform.position;
+            Vector3 relativePos = Target - transform.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             if (Quaternion.Angle(transform.rotation, rotation) > 0.1f)
             {
@@ -68,7 +68,7 @@ public class Fighter : Unit {
                 float rotSpeed = 360f;
 
                 // distance between target and the actual rotating object
-                Vector3 D = _target - transform.position;
+                Vector3 D = Target - transform.position;
 
                 // calculate the Quaternion for the rotation
                 Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), rotSpeed * Time.deltaTime);
@@ -78,9 +78,9 @@ public class Fighter : Unit {
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
 
-            if (Vector3.Distance(transform.position, _target) > 0.2f)
+            if (Vector3.Distance(transform.position, Target) > 0.2f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _target, 30 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, Target, 30 * Time.deltaTime);
             }
         }
     }

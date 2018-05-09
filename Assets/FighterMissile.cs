@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class FighterMissile : MonoBehaviour {
     public Fighter Fighter;
-    public Transform Target;
-    private float _speed;
     public GameObject ExplosionPrefab;
+
+    private float _speed;
+    private float _timer;
 
     void Start()
     {
         _speed = 50;
+        _timer = 5;
     }
 
     void Update()
     {
         _speed += 3f * Time.deltaTime;
-        if (Target != null)
-        {
-            transform.LookAt(Target);
-            transform.position = Vector3.MoveTowards(transform.position, Target.position, Time.deltaTime * _speed);
-        }
-        else
+        transform.Translate(Vector3.forward * Time.deltaTime*_speed);
+        _timer -= Time.deltaTime;
+        if (_timer < 0)
         {
             Destroy(gameObject);
         }
@@ -45,5 +44,4 @@ public class FighterMissile : MonoBehaviour {
         }
         Destroy(gameObject);
     }
-
 }
