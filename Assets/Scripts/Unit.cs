@@ -11,8 +11,8 @@ public class Unit : MonoBehaviour
 
     public GameObject ExplosionPrefab;
     public GameObject HealthBarPrefab;
-
-    public Image HealthBarImage;
+    
+    public List<Image> HealthBarImages;
 
     private int _health;
     public int FullHealth =100;
@@ -22,7 +22,7 @@ public class Unit : MonoBehaviour
         set
         {
             _health = value;
-            HealthBarImage.fillAmount = (float)_health / (float)FullHealth;
+            SetHealthBarFills((float)_health / (float)FullHealth);
             if (_health <= 0)
             {
                 Explode();
@@ -33,10 +33,16 @@ public class Unit : MonoBehaviour
 
     public virtual void Start()
     {
-        var go = Instantiate(HealthBarPrefab, UnitsUI.Instance.transform);
-        var health = go.GetComponent<HealthBar>();
-        health.Unit = this;
-        HealthBarImage = health.HealthFill;
+        HealthBarImages = new List<Image>();
+
+        foreach(var unitsUI in GameManager.Instance.UnitsUIList)
+        {
+            var go = Instantiate(HealthBarPrefab, unitsUI.transform);
+            var healthbar = go.GetComponent<HealthBar>();
+            healthbar.Unit = this;
+            HealthBarImages.Add(healthbar.HealthFill);
+            healthbar.Camera = unitsUI.Camera;
+        }
 
     }
     public void Explode()
@@ -47,5 +53,10 @@ public class Unit : MonoBehaviour
     public virtual void Destroy()
     {
         Destroy(gameObject);
+    }
+    private void SetHealthBarFills(float percentage)
+    {
+        foreach (var healthbar in HealthBarImages)
+            healthbar.fillAmount = percentage;
     }
 }

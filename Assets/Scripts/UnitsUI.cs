@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UnitsUI : MonoBehaviour {
 
-    public static UnitsUI Instance;
+    public Camera Camera;
 
     void Awake()
     {
-        Instance = this;
+        GameManager.Instance.AddToList(this);
     }
 }

@@ -239,6 +239,8 @@ public class Fighter : Unit {
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
         _rigidbody.isKinematic = !enable;
+        if(enable)
+            Health = 100;
     }
     void Respawn()
     {

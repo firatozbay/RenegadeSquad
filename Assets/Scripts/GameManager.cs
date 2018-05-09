@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
     public Text GameWinLose;
 
+    public List<UnitsUI> UnitsUIList;
+
     private void Awake()
     {
         Instance = this;
@@ -75,5 +77,12 @@ public class GameManager : MonoBehaviour {
             default:
                 return "";
         }
+    }
+
+    public void AddToList(UnitsUI unitsUI)
+    {
+        if(UnitsUIList == null)
+            UnitsUIList = new List<UnitsUI>();
+        UnitsUIList.Add(unitsUI);
     }
 }

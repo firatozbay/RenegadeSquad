@@ -182,6 +182,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1669055847626150
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224284099551079540}
+  - component: {fileID: 114679448279993322}
+  m_Layer: 5
+  m_Name: Units
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1696708865899196
 GameObject:
   m_ObjectHideFlags: 1
@@ -319,7 +335,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203160385267634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -562.01, y: 121, z: 0}
+  m_LocalPosition: {x: -531.8, y: 118, z: 0}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Children:
   - {fileID: 4726853014139724}
@@ -872,13 +888,24 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
-  ControllerIndex: 1
+  ControllerIndex: 2
   Bullet: {fileID: 1676998913839862, guid: 2a9e67a96bff3fe42a1bf96187f1a78e, type: 2}
   NameText: {fileID: 114051253475299020}
   DeathTimerText: {fileID: 114572660043033438}
+--- !u!114 &114679448279993322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669055847626150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50de497acc08414ab026ae58011e117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 20816623067726102}
 --- !u!114 &114732979885975374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -890,10 +917,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1119,6 +1146,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 209.8, y: 44.8}
   m_Pivot: {x: 0, y: 1}
+--- !u!224 &224284099551079540
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669055847626150}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.002182, y: -49.865875, z: -0.02711615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224924201934949440}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50.002182, y: -49.865875}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0}
 --- !u!224 &224329691391263932
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1240,12 +1285,13 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935411208024014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 99.999954}
+  m_LocalPosition: {x: 0, y: 0, z: 115.33353}
   m_LocalScale: {x: 0.14976661, y: 0.14976661, z: 0.14976661}
   m_Children:
   - {fileID: 224768942924880010}
   - {fileID: 224979685849622484}
   - {fileID: 224644074782679932}
+  - {fileID: 224284099551079540}
   m_Father: {fileID: 4726853014139724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

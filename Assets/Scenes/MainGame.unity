@@ -594,8 +594,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!1 &93504672
 GameObject:
@@ -642,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50de497acc08414ab026ae58011e117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 240303863}
 --- !u!1 &100538602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,8 +2195,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!4 &352734613 stripped
 Transform:
@@ -2249,6 +2248,7 @@ MonoBehaviour:
   PlayerStationCount: 0
   EnemyStationCount: 0
   GameWinLose: {fileID: 767276323}
+  UnitsUIList: []
 --- !u!1 &410139680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,8 +3806,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!1001 &665149092
 Prefab:
@@ -6591,8 +6590,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!1 &1223884237
 GameObject:
@@ -6811,8 +6809,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!1001 &1286315494
 Prefab:
@@ -8243,8 +8240,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!1 &1457954563
 GameObject:
@@ -8702,8 +8698,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!4 &1606969474 stripped
 Transform:
@@ -9050,8 +9045,7 @@ MonoBehaviour:
     type: 2}
   HealthBarPrefab: {fileID: 1497949558259036, guid: 8c065c389ceef7042803ab1ac30d8749,
     type: 2}
-  HealthBarImage: {fileID: 0}
-  HealthBarFighterImages: []
+  HealthBarImages: []
   FullHealth: 0
 --- !u!1 &1703859414
 GameObject:
@@ -10093,7 +10087,7 @@ Prefab:
     - target: {fileID: 224924201934949440, guid: f3f7a976949b12544abdc5d75724a85b,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3f7a976949b12544abdc5d75724a85b, type: 2}
