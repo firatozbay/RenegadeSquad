@@ -37,7 +37,9 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < size; i++)
 	    {
 	        var cam = PlayerList.transform.GetChild(i).GetComponentInChildren<Camera>();
-	        PlayerList.transform.GetChild(i).GetComponentInChildren<Fighter>().ControllerIndex = (ControllerManager.ControllerIndex) i;
+            var fighter = PlayerList.transform.GetChild(i).GetComponentInChildren<Fighter>();
+            fighter.ControllerIndex = (ControllerManager.ControllerIndex) i;
+            fighter.NameText.text = GetName(i);
 
             if (size == 2)
 	            cam.rect = new Rect(i * 0.5f, 0.0f, 0.5f, 1.0f);
@@ -57,4 +59,21 @@ public class GameManager : MonoBehaviour {
             GameWinLose.gameObject.SetActive(true);
         }
 	}
+
+    string GetName(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return "ALPHA";
+            case 1:
+                return "BRAVO";
+            case 2:
+                return "CHARLIE";
+            case 3:
+                return "DELTA";
+            default:
+                return "";
+        }
+    }
 }

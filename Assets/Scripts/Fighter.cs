@@ -17,6 +17,8 @@ public class Fighter : Unit {
 
     public Vector3 Target { get; set; }
 
+    public Text NameText; // UI Text or player
+
     // Use this for initialization
     public override void Start () {
         base.Start();
