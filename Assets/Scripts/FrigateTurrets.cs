@@ -32,7 +32,6 @@ public class FrigateTurrets : MonoBehaviour
         var unit = col.GetComponent<Unit>();
         if ( unit != null && unit.UnitAlignment != Frigate.UnitAlignment)
         {
-            Debug.Log("asdfasdfasdf");
             Attack(unit);
         }
     }
@@ -41,13 +40,10 @@ public class FrigateTurrets : MonoBehaviour
     {
         if (WeaponCharge> 4.98)
         {
-            Debug.Log("asdfasdfasdf2");
             var go = Instantiate(MissilePrefab, transform.position, transform.rotation);
             go.GetComponent<Missile>().Frigate = Frigate;
             go.GetComponent<Missile>().Target = unit.transform;
             WeaponCharge = 0;
-
-            Debug.Log("asdfasdfasdf3 ");
         }
     }
 }

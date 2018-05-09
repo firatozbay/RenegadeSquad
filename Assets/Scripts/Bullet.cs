@@ -30,7 +30,6 @@ public class Bullet : MonoBehaviour
         var unit = other.GetComponent<Unit>();
         if (unit != null && unit.UnitAlignment != Fighter.UnitAlignment)
         {
-            Debug.Log("qwer");
             Damage(unit);
         }
     }

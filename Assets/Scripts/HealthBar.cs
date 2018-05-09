@@ -11,7 +11,6 @@ public class HealthBar : MonoBehaviour {
         set
         {
             _unit = value;
-            Debug.Log(_unit.UnitAlignment);
             HealthFill.color = _unit.UnitAlignment == Unit.Alignment.Player ? PlayerColor : EnemyColor;
         }
     }

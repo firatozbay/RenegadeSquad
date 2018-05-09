@@ -32,7 +32,6 @@ public class FighterMissile : MonoBehaviour {
         if (unit != null && unit.UnitAlignment != Fighter.UnitAlignment)
         {
             Damage(unit);
-            Debug.Log("damage");
         }
     }
 
