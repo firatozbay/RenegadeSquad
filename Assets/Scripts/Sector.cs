@@ -8,7 +8,9 @@ public class Sector : MonoBehaviour {
 
     public GameObject EnemyButtonsPrefab;
     public GameObject FriendlyButtonsPrefab;
-    
+
+    public int SectorIndex;
+
 	// Use this for initialization
 	void Start () {
         GameObject go;
@@ -33,4 +35,14 @@ public class Sector : MonoBehaviour {
     void Update () {
 		
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Fighter>() != null)
+        {
+            var fighter = other.GetComponent<Fighter>();
+            if (fighter.UnitAlignment == Unit.Alignment.Player)
+                fighter.SetSector(SectorIndex);
+        }
+    }
 }

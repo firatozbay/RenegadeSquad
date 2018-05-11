@@ -4,25 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Fighter : Unit {
-
-    public ControllerManager.ControllerIndex ControllerIndex;
-
+    //Universal stuff
     public GameObject Bullet;
 
     private Rigidbody _rigidbody;
-    
-    private float _contFireTimer;
 
-    private float _enemyTimer;
-
-    public Vector3 Target { get; set; }
+    //Player stuff
+    public ControllerManager.ControllerIndex ControllerIndex;
 
     public Text NameText; // UI Text for player
     public Text DeathTimerText; //UI Text for player
 
+    public Image[] SectorImages;    //Set in editor
+
     public float DeathTimer { get; set; }
 
     private Vector3 _initialPosition;
+    private float _contFireTimer;
+
+    //Enemy stuff
+    public Vector3 Target { get; set; }
+    private float _enemyTimer;
+    
 
     // Use this for initialization
     public override void Start () {
@@ -246,5 +249,12 @@ public class Fighter : Unit {
     {
         transform.position = _initialPosition;
         ToggleActivation(true);
+    }
+
+    public void SetSector(int index)
+    {
+        foreach (var sector in SectorImages)
+            sector.color = Color.black;
+        SectorImages[index].color = Color.yellow;
     }
 }
