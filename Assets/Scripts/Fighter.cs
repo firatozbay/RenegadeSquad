@@ -37,7 +37,7 @@ public class Fighter : Unit {
         _rigidbody = GetComponent<Rigidbody>();
         _contFireTimer = 0;     //time to fire for continous pressing
 
-        _enemyTimer = 0;
+        _enemyTimer = Random.Range(5, 10);
         var rand = Random.Range(0, 10);
         if (rand > 6)
         {
@@ -73,10 +73,10 @@ public class Fighter : Unit {
         }
         else //Enemy
         {
-            _enemyTimer += Time.deltaTime;
-            if (_enemyTimer > 10)
+            _enemyTimer -= Time.deltaTime;
+            if (_enemyTimer < 0)
             {
-                _enemyTimer = 0;
+                _enemyTimer = Random.Range(5, 10);
                 var rand = Random.Range(0, 10);
                 if (rand > 6)
                 {

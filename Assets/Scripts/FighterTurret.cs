@@ -22,12 +22,21 @@ public class FighterTurret : MonoBehaviour {
         }
     }
 
-    void OnTriggerStay(Collider col)
+    void OnTriggerEnter(Collider col)
     {
         var unit = col.GetComponent<Unit>();
         if (unit != null && unit.UnitAlignment != Fighter.UnitAlignment)
         {
             Fighter.Target = unit.transform.position;
+        }
+
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        var unit = col.GetComponent<Unit>();
+        if (unit != null && unit.UnitAlignment != Fighter.UnitAlignment)
+        {
             Attack(unit);
         }
     }
